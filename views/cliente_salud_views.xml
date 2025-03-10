@@ -1,0 +1,109 @@
+<odoo>
+    <!-- Menú Principal -->
+    <menuitem id="menu_cliente_salud_root" name="Cliente Salud"/>
+    <menuitem id="menu_cliente_salud" name="Clientes" parent="menu_cliente_salud_root"/>
+
+    <!-- Vista en Árbol -->
+    <record id="view_cliente_salud_tree" model="ir.ui.view">
+        <field name="name">cliente.salud.tree</field>
+        <field name="model">cliente.salud</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre"/>
+                <field name="apellidos"/>
+                <field name="dni"/>
+                <field name="edad"/>
+                <field name="imc"/>
+                <field name="recommended_activity"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Kanban -->
+    <record id="view_cliente_salud_kanban" model="ir.ui.view">
+        <field name="name">cliente.salud.kanban</field>
+        <field name="model">cliente.salud</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="nombre"/>
+                <field name="apellidos"/>
+                <field name="dni"/>
+                <field name="imc"/>
+                <field name="recommended_activity"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_record">
+                            <strong><t t-esc="record.nombre.value"/> <t t-esc="record.apellidos.value"/></strong>
+                            <br/>
+                            <span>DNI: <t t-esc="record.dni.value"/></span>
+                            <br/>
+                            <span>IMC: <t t-esc="record.imc.value"/></span>
+                            <br/>
+                            <span>Actividad Recomendada: <t t-esc="record.recommended_activity.value"/></span>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario -->
+    <record id="view_cliente_salud_form" model="ir.ui.view">
+        <field name="name">cliente.salud.form</field>
+        <field name="model">cliente.salud</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Información Personal">
+                        <field name="nombre"/>
+                        <field name="apellidos"/>
+                        <field name="dni"/>
+                        <field name="edad"/>
+                    </group>
+
+                    <group string="Datos Físicos">
+                        <field name="altura"/>
+                        <field name="peso"/>
+                        <field name="imc"/>
+                    </group>
+
+                    <group string="Objetivos y Recomendaciones">
+                        <field name="kcal_goal"/>
+                        <field name="recommended_activity"/>
+                        <field name="diet_recommendation"/>
+                    </group>
+
+                    <group string="Notas y Seguimiento">
+                        <field name="progress_notes"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Historial de Actividades">
+                            <group>
+                                <field name="activity_history">
+                                    <tree editable="bottom">
+                                        <field name="activity_date"/>
+                                        <field name="activity_type"/>
+                                        <field name="duration"/>
+                                        <field name="notes"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para mostrar clientes -->
+    <record id="action_cliente_salud" model="ir.actions.act_window">
+        <field name="name">Clientes</field>
+        <field name="res_model">cliente.salud</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <!-- Menú para la acción -->
+    <menuitem id="menu_cliente_salud_action" name="Clientes" parent="menu_cliente_salud"
+              action="action_cliente_salud"/>
+</odoo>

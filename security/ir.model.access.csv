@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cliente_salud_user,access_cliente_salud_user,model_cliente_salud,base.group_user,1,1,1,0
+access_cliente_salud_manager,access_cliente_salud_manager,model_cliente_salud,base.group_system,1,1,1,1
+access_cliente_salud_activity_user,access_cliente_salud_activity_user,model_cliente_salud_activity,base.group_user,1,1,1,0
+access_cliente_salud_activity_manager,access_cliente_salud_activity_manager,model_cliente_salud_activity,base.group_system,1,1,1,1
