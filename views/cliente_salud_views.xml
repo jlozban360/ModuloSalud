@@ -45,6 +45,28 @@
                         <field name="recommended_activity" readonly="1"/>
                         <field name="diet_recommendation" readonly="1"/>
                     </group>
+
+                    <!-- Sección para el Historial de Actividades -->
+                    <notebook>
+                        <page string="Historial de Actividades">
+                            <field name="activity_history">
+                                <tree>
+                                    <field name="activity_date"/>
+                                    <field name="activity_type"/>
+                                    <field name="duration"/>
+                                    <field name="notes"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="activity_date"/>
+                                        <field name="activity_type"/>
+                                        <field name="duration"/>
+                                        <field name="notes"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
