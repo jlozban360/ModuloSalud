@@ -36,14 +36,14 @@
                     <group string="Datos Físicos">
                         <field name="altura"/>
                         <field name="peso"/>
-                        <field name="imc"/>
-                        <field name="imc_category"/>
+                        <field name="imc" readonly="1"/>
+                        <field name="imc_category" readonly="1"/>
                     </group>
 
                     <group string="Objetivos y Recomendaciones">
                         <field name="kcal_goal"/>
-                        <field name="recommended_activity"/>
-                        <field name="diet_recommendation"/>
+                        <field name="recommended_activity" readonly="1"/>
+                        <field name="diet_recommendation" readonly="1"/>
                     </group>
                 </sheet>
             </form>

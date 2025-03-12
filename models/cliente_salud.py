@@ -40,13 +40,19 @@ class ClienteSalud(models.Model):
         for record in self:
             if not re.match(r'^\d{8}[A-Z]$', record.dni):
                 raise ValidationError(_("El DNI debe tener 8 números seguidos de una letra mayúscula."))
+            # Verificación de la letra del DNI
+            letras = "TRWAGMYFPDXBNJZSQVHLCKE"
+            numero = int(record.dni[:-1])
+            letra_calculada = letras[numero % 23]
+            if record.dni[-1] != letra_calculada:
+                raise ValidationError(_("La letra del DNI no es válida."))
 
     # Validación de la edad
     @api.constrains('edad')
     def _check_edad(self):
         for record in self:
             if not (0 <= record.edad <= 120):
-                raise ValidationError(_("La edad debe estar entre 0 y 120 años."))
+                raise ValidationError(_("La edad debe estar entre 0 y 120 años. Por favor, introduce una edad válida."))
 
     # Cálculo del IMC
     @api.depends('peso', 'altura')
